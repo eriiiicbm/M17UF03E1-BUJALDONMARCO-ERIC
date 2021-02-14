@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Score : MonoBehaviour
+public class CharacterScript : MonoBehaviour
 {
-    int puntos;
+    public static int puntos;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,9 +16,14 @@ public class Score : MonoBehaviour
     void Update()
     {
  
+
+        if (puntos == 4)
+        {
+            SceneManager.LoadScene("Victory");
+        }
     }
 
-    private void OnTriggerEnter2D(Collider collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Score"))
         {
@@ -27,7 +33,7 @@ public class Score : MonoBehaviour
 
         if (collision.CompareTag("Death"))
         {
-            Application.Quit();
+            SceneManager.LoadScene("Death");
         }
     }
 
